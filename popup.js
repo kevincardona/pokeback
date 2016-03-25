@@ -1,5 +1,1 @@
-document.addEvent('DOMContentLoaded', function() {
 
-
-}
-);
