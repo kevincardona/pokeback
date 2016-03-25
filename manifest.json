@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "PokeBack",
+  "description": "This program will automatically poke your facebook friends back.",
   "version": "1.0",
 
   "browser_action": {
@@ -11,6 +11,12 @@
   },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
-  ]
+    "https://ajax.googleapis.com/",
+    "tabs",
+    "storage"
+  ],
+  "content_scripts" : [{
+       "matches" : ["https://www.facebook.com/pokes/*"],
+       "js" : ["jquery-1.12.2.min.js", "poke.js", "click.js"]
+   }]
 }

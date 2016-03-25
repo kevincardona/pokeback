@@ -1,39 +1,53 @@
 var on = false;
+var running = false;
 
+
+window.onload=function(){
+	chrome.storage.sync.get ({item: on}, function (items) {
+		if (items.item === false) {
+     	  on = false;
+  	   	  $(toggle).css("background-color", "red");
+   	  	  $(toggle).css("width", "50px");
+   	  	  $(toggle).css("height", "50px");
+   	   	  $(toggle).css("background-position", "center");
+   	  	  running = false;
+
+ 		 }
+  		else {
+   		 on = true;
+   		 $(toggle).css("background-color", "green");
+   		 $(toggle).css("width", "50px");
+   	 	 $(toggle).css("height", "50px");
+   	 	 $(toggle).css("background-position", "center");
+  		}
+	});
+
+}
+
+//Onclick
 $(toggle).click(function () {
 
   if (on) {
       on = false;
-      $(toggle).css("background", "url('icon-off.png')")
+      $(toggle).css("background-color", "red");
       $(toggle).css("width", "50px");
       $(toggle).css("height", "50px");
       $(toggle).css("background-position", "center");
+      running = false;
 
   }
   else {
     on = true;
-    $(toggle).css("background", "url('icon-on.png')")
+    $(toggle).css("background-color", "green");
     $(toggle).css("width", "50px");
     $(toggle).css("height", "50px");
     $(toggle).css("background-position", "center");
   }
 
+
+  chrome.storage.sync.set({item: on});
+
+
 });
-
-setInterval(function(){
-  if (on) {
-    poke(document.getElementsByClassName("_42ft"));
-  }
-}, 5000);
-
-function poke(list) {
-
-  for (var i = 0; i < list.length; i++) {
-    var temp = list[i];
-      if (temp.getAttribute("ajaxify").substring(0,28) == "/pokes/inline/?dom_id_replace" && !temp.getAttribute("ajaxify").indexOf("suggestion")) {
-
-      }
-  }
-}
 
 $(document).ready(main);
