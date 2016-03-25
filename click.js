@@ -3,8 +3,9 @@ var running = false;
 
 
 window.onload=function(){
-	chrome.storage.sync.get ({item: on}, function (items) {
-		if (items.item === false) {
+	chrome.storage.sync.set({item: on});
+	chrome.storage.sync.get ({state: on}, function (items) {
+		if (items.state === false) {
      	  on = false;
   	   	  $(toggle).css("background-color", "red");
    	  	  $(toggle).css("width", "50px");
